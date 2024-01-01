@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "LG",
+      "price": 4200,
+      "quantity": 30,
+      "selected": false,
+      "available": false
+    },
+    {
+      "id": 2,
+      "name": "DELL",
+      "price": 3200,
+      "quantity": 30,
+      "selected": false,
+      "available": false
+    },
+    {
+      "id": 3,
+      "name": "Apple",
+      "price": 9200,
+      "quantity": 30,
+      "selected": false,
+      "available": false
+    }
+  ]
+}

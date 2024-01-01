@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+
+# User-specific files
+.vscode/
+.settings/
+*.code-workspace
+
+# Compiled output
+/out/
+/dist/
+/lib/
+/node_modules/
+/tmp/
+/.awcache/
+
+# TypeScript
+*.tsbuildinfo
+*.tsconfig.tsbuildinfo
+
+# IntelliJ
+.idea/
+
+# Sublime Text
+.sublime-project
+.sublime-workspace
+
+# VS Code directories
+.vscode/
