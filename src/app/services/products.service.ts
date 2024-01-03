@@ -42,6 +42,11 @@ export class ProductsService {
     return this.http.put<Product>(apiUrl, product);
   }
 
+  saveProduct(product: Product): Observable<Product> {
+    let apiUrl = environment.apiUrl + "/products"
+    return this.http.post<Product>(apiUrl, product);
+  }
+
    
 
 
