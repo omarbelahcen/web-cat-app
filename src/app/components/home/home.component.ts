@@ -11,9 +11,5 @@ export class HomeComponent implements OnInit {
     // TODO - implement ngOnInit method
   }
 
-  constructor() {
-
-  }
-
 
 }
