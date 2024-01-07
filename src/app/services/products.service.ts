@@ -16,6 +16,11 @@ export class ProductsService {
     return this.http.get<Product[]>(apiUrl);
   }
 
+  getProduct(id: number): Observable<Product> {
+    let apiUrl = environment.apiUrl + "/products/"+id;
+    return this.http.get<Product>(apiUrl);
+  }
+
   getSelectedProducts(): Observable<Product[]> {
     let apiUrl = environment.apiUrl + "/products?selected=true"
     return this.http.get<Product[]>(apiUrl);
@@ -47,8 +52,9 @@ export class ProductsService {
     return this.http.post<Product>(apiUrl, product);
   }
 
-   
-
-
+  updateProduct(product: Product): Observable<Product> {
+    let apiUrl = environment.apiUrl + "/products/"+ product.id;
+    return this.http.put<Product>(apiUrl, product);
+  }
 
 }

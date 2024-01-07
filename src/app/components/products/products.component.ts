@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, catchError, map, of, startWith } from 'rxjs';
 import { Product } from 'src/app/models/product';
-import { AppDataState, DataStateEnum } from 'src/app/state/product.state';
+import { ActionEvent, AppDataState, DataStateEnum, ProductActionsTypes } from 'src/app/state/product.state';
 import { ProductsService } from 'src/app/services/products.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,6 +12,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  
+  onActionEvent($event: ActionEvent) {
+    switch($event.type) {
+      case ProductActionsTypes.GET_ALL_PRODUCTS: this.onGetAllProduct(); break;
+      case ProductActionsTypes.GET_SELECTED_PRODUCTS: this.onGetSelectedProduct(); break;
+      case ProductActionsTypes.GET_AVAILABLE_PRODUCTS: this.onGetAvailableProduct(); break;
+      case ProductActionsTypes.NEW_PRODUCT: this.onAddNewProduct(); break;
+      case ProductActionsTypes.SEARCH_PRODUCT: this.onSearch($event.payload); break;
+      case ProductActionsTypes.SELECT_PRODUCT: this.onSelect($event.payload); break;
+      case ProductActionsTypes.EDIT_PRODUCT: this.onEditProduct($event.payload); break;
+      case ProductActionsTypes.DELETE_PRODUCT: this.onDeleteProduct($event.payload); break;
+    }
+  }
 
   products$: Observable<AppDataState<Product[]>> | null = null;
   readonly DataStateEnum = DataStateEnum;
@@ -19,6 +32,7 @@ export class ProductsComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({});
   
   ngOnInit(): void {
+    this.onGetAllProduct();
     this.searchForm = this.formBuilder.group({
       searchInput: ['']
     })

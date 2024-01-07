@@ -1,0 +1,29 @@
+<ng-container *ngIf="(productsInput$ | async) as result" [ngSwitch]="result.dataState">
+    <ng-container *ngSwitchCase="DataStateEnum.LOADING">
+        LOADING ...
+    </ng-container>
+    <ng-container *ngSwitchCase="DataStateEnum.ERROR">
+        <div class="col-12 text-center">
+            <div class="alert alert-danger">
+                {{result.errorMessage}}
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="DataStateEnum.LOADED">
+        <ng-container *ngIf="result.data && result.data.length > 0">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Name</th><th>Price</th><th>Quantity</th><th>Available</th><th></th><th></th><th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <app-product-item [product]="p" (productsItemEventEmitter)="onActionEvent($event)"  *ngFor="let p of result.data" style="display: contents;"></app-product-item>
+                </tbody>
+            </table>
+        </ng-container>
+        <ng-container *ngIf="!result.data || result.data.length === 0">
+            No products available.
+        </ng-container>    
+    </ng-container>
+</ng-container>
